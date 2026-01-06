@@ -1,0 +1,82 @@
+menu pengelolaan mahasiswa
+
+data_mahasiswa = []
+
+while True:
+    print("===== MENU PENGELOLAAN MAHASISWA =====")
+    print("1. Tambah Mahasiswa")
+    print("2. Tampilkan Semua Mahasiswa")
+    print("3. Cari Mahasiswa (NIM)")
+    print("4. Hapus Mahasiswa")
+    print("5. Keluar")
+
+    pilihan = input("Pilih menu (1-5): ")
+
+    # 1. Tambah Mahasiswa
+    if pilihan == "1":
+        nim = input("Masukkan NIM: ")
+        nama = input("Masukkan Nama: ")
+        prodi = input("Masukkan Program Studi: ")
+
+        mahasiswa = {
+            "nim": nim,
+            "nama": nama,
+            "prodi": prodi
+        }
+
+        data_mahasiswa.append(mahasiswa)
+        print("Data mahasiswa berhasil ditambahkan.")
+
+    # 2. Tampilkan Semua Mahasiswa
+    elif pilihan == "2":
+        if len(data_mahasiswa) == 0:
+            print("Data mahasiswa masih kosong.")
+        else:
+            print("Daftar Mahasiswa:")
+            for mhs in data_mahasiswa:
+                print("NIM:", mhs["nim"])
+                print("Nama:", mhs["nama"])
+                print("Program Studi:", mhs["prodi"])
+                print("----------------------")
+
+    # 3. Cari Mahasiswa berdasarkan NIM
+    elif pilihan == "3":
+        cari_nim = input("Masukkan NIM yang dicari: ")
+        ditemukan = False
+
+        for mhs in data_mahasiswa:
+            if mhs["nim"] == cari_nim:
+                print("Data Mahasiswa Ditemukan:")
+                print("NIM:", mhs["nim"])
+                print("Nama:", mhs["nama"])
+                print("Program Studi:", mhs["prodi"])
+                ditemukan = True
+                break
+
+        if not ditemukan:
+            print("Mahasiswa dengan NIM tersebut tidak ditemukan.")
+
+    # 4. Hapus Mahasiswa
+    elif pilihan == "4":
+        hapus_nim = input("Masukkan NIM yang akan dihapus: ")
+        ditemukan = False
+
+        for mhs in data_mahasiswa:
+            if mhs["nim"] == hapus_nim:
+                data_mahasiswa.remove(mhs)
+                print("Data mahasiswa berhasil dihapus.")
+                ditemukan = True
+                break
+
+        if not ditemukan:
+            print("Mahasiswa dengan NIM tersebut tidak ditemukan.")
+
+    # 5. Keluar
+    elif pilihan == "5":
+        print("Program selesai. Terima kasih.")
+        break
+
+    else:
+        print("Pilihan menu tidak valid!")
+
+    print()  # baris kosong agar rapi
